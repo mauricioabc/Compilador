@@ -15,7 +15,7 @@ public class Arquivo {
         ArrayList<String[]> linhas = new ArrayList();
         String linhaAtual = leitor.readLine();
         while (linhaAtual != null) {
-            lexica.analisador(linhaAtual);
+            //lexica.analisador(linhaAtual);
             linhaAtual = leitor.readLine();
         }
     }
