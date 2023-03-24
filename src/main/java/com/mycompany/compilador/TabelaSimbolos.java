@@ -1,15 +1,21 @@
 package com.mycompany.compilador;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class TabelaSimbolos {
 
-    private List<Simbolo> tabela = new ArrayList<>();
+    public static HashMap<String, Integer> tabela = new HashMap<>();;
 
     public TabelaSimbolos() {
-        //tabela.add(new Simbolo(lexema, token))
+        
     }
     
+    public class AutoIncrement {
+        private static int count = 0;
+    
+        public static int getNext() {
+            return ++count;
+        }
+    }
     
 }

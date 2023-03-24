@@ -39,7 +39,7 @@
                      </descriptorRefs>
                      <archive>
                          <manifest>
-                             <mainClass>com.gooFrete.View.Janela</mainClass>
+                             <mainClass>com.mycompany.View.Janela</mainClass>
                          </manifest>
                      </archive>
                  </configuration>

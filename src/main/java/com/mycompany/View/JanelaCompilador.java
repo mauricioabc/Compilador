@@ -1,12 +1,17 @@
 package com.mycompany.View;
 
+import com.mycompany.compilador.AnaliseLexica;
 import com.mycompany.compilador.Arquivo;
+import com.mycompany.compilador.Simbolo;
+import com.mycompany.compilador.TabelaSimbolos;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -16,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.TabableView;
 
 /**
  *
@@ -67,21 +73,33 @@ public class JanelaCompilador extends javax.swing.JPanel {
         //Atualiza tabela
         ((DefaultTableModel) tabelaListaTokens.getModel()).setRowCount(0);
             
-        ((DefaultTableModel) tabelaListaTokens.getModel()).addRow(new Object[]{
-            "valor",
-            "Id, 1"
-        });
+        for (Simbolo s : AnaliseLexica.simbolos) {
+           ((DefaultTableModel) tabelaListaTokens.getModel()).addRow(new Object[]{
+            s.getLexema(),
+            s.getToken()+", "+s.getAtributo()
+        }); 
+        }
+//        ((DefaultTableModel) tabelaListaTokens.getModel()).addRow(new Object[]{
+//            "valor",
+//            "Id, 1"
+//        });
         
     }
     
     public void atualizaTabelaSimbolos(){
         //Atualiza tabela
         ((DefaultTableModel) tabelaSimbolos.getModel()).setRowCount(0);
-            
-        ((DefaultTableModel) tabelaSimbolos.getModel()).addRow(new Object[]{
-            "1",
-            "valor"
+        for (Map.Entry<String, Integer> entry : TabelaSimbolos.tabela.entrySet()) {
+            ((DefaultTableModel) tabelaSimbolos.getModel()).addRow(new Object[]{
+            entry.getValue(),
+            entry.getKey()
         });
+            
+        }
+//        ((DefaultTableModel) tabelaSimbolos.getModel()).addRow(new Object[]{
+//            "1",
+//            "valor"
+//        });
         
     }
     
@@ -89,9 +107,15 @@ public class JanelaCompilador extends javax.swing.JPanel {
         //Atualiza tabela
         ((DefaultTableModel) tabelaErros.getModel()).setRowCount(0);
             
-        ((DefaultTableModel) tabelaErros.getModel()).addRow(new Object[]{
-            "Linha 3: Erro aspas não fechadas."
-        });
+        for (String s : AnaliseLexica.erros) {
+           ((DefaultTableModel) tabelaErros.getModel()).addRow(new Object[]{
+            s
+        }); 
+        }
+        
+//        ((DefaultTableModel) tabelaErros.getModel()).addRow(new Object[]{
+//            "Linha 3: Erro aspas não fechadas."
+//        });
         
     }
     
@@ -247,14 +271,12 @@ public class JanelaCompilador extends javax.swing.JPanel {
         jScrollPane3.setViewportView(tabelaListaTokens);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Selecionar arquivo .txt");
 
         jLabel5.setText("Arquivo selecionado:");
 
         tf_NomeArquivo.setEnabled(false);
 
-        bt_Limpar.setBackground(new java.awt.Color(255, 255, 255));
         bt_Limpar.setText("Limpar");
         bt_Limpar.setFocusPainted(false);
         bt_Limpar.setFocusable(false);
@@ -264,7 +286,6 @@ public class JanelaCompilador extends javax.swing.JPanel {
             }
         });
 
-        bt_Compilar.setBackground(new java.awt.Color(255, 255, 255));
         bt_Compilar.setText("Compilar");
         bt_Compilar.setFocusPainted(false);
         bt_Compilar.setFocusable(false);
@@ -275,7 +296,6 @@ public class JanelaCompilador extends javax.swing.JPanel {
         });
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Tabela de Símbolos");
 
         tabelaSimbolos.setModel(new javax.swing.table.DefaultTableModel(
@@ -304,10 +324,8 @@ public class JanelaCompilador extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tabelaSimbolos);
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Lista de Tokens");
 
-        bt_Selecionar.setBackground(new java.awt.Color(255, 255, 255));
         bt_Selecionar.setText("Selecionar");
         bt_Selecionar.setFocusPainted(false);
         bt_Selecionar.setFocusable(false);
@@ -318,7 +336,6 @@ public class JanelaCompilador extends javax.swing.JPanel {
         });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Erros encontrados:");
 
         tabelaErros.setModel(new javax.swing.table.DefaultTableModel(
@@ -422,7 +439,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
         });
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\mauricio.rodrigues\\OneDrive - NDD.Tech\\Documentos\\GitHub\\gooFrete\\src\\main\\resources\\icons8_Exit_25px.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\mauricio.rodrigues\\OneDrive - NDD.Tech\\Documentos\\GitHub\\Compilador\\images\\icons8_Exit_25px.png")); // NOI18N
         jLabel1.setText("Logout");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -459,7 +476,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 4, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -474,11 +491,11 @@ public class JanelaCompilador extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(side_pane, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(side_pane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     

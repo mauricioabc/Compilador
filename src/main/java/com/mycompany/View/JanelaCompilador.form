@@ -27,12 +27,12 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="side_pane" alignment="0" min="-2" pref="590" max="-2" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" max="32767" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
           </Group>
+          <Component id="side_pane" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -323,9 +323,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Selecionar arquivo .txt"/>
           </Properties>
         </Component>
@@ -341,9 +338,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="bt_Limpar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Limpar"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -354,9 +348,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="bt_Compilar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Compilar"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -369,9 +360,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tabela de S&#xed;mbolos"/>
           </Properties>
@@ -400,17 +388,11 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Lista de Tokens"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="bt_Selecionar">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Selecionar"/>
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -423,9 +405,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Erros encontrados:"/>
           </Properties>
@@ -491,7 +470,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -505,7 +484,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\mauricio.rodrigues\OneDrive - NDD.Tech\Documentos\GitHub\gooFrete\src\main\resources\icons8_Exit_25px.png"/>
+              <Image iconType="2" name="C:\Users\mauricio.rodrigues\OneDrive - NDD.Tech\Documentos\GitHub\Compilador\images\icons8_Exit_25px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Logout"/>
           </Properties>
