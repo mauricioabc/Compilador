@@ -9,6 +9,9 @@ import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +47,9 @@ public class JanelaCompilador extends javax.swing.JPanel {
         fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Texto", "txt");
         fc.setFileFilter(filter);
+        System.out.println("Diretório atual: " + System.getProperty("user.dir"));
+        File initialDir = new File("./exemplos");
+        fc.setCurrentDirectory(initialDir);
         fc.setDialogTitle("Abrir arquivo de texto");
         int returnVal = fc.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -61,6 +67,9 @@ public class JanelaCompilador extends javax.swing.JPanel {
     
     public void limparArquivo(){
         tf_NomeArquivo.setText("");
+        ((DefaultTableModel) tabelaListaTokens.getModel()).setRowCount(0);
+        ((DefaultTableModel) tabelaSimbolos.getModel()).setRowCount(0);
+        ((DefaultTableModel) tabelaErros.getModel()).setRowCount(0);
     }
     
     public void compilar(){
@@ -87,21 +96,19 @@ public class JanelaCompilador extends javax.swing.JPanel {
     }
     
     public void atualizaTabelaSimbolos(){
-        //Atualiza tabela
+        int ordem = TabelaSimbolos.tabela.size();
+        HashMap<Integer, String> tabela;
+        tabela = TabelaSimbolos.tabela;
         ((DefaultTableModel) tabelaSimbolos.getModel()).setRowCount(0);
-        for (Map.Entry<String, Integer> entry : TabelaSimbolos.tabela.entrySet()) {
-            ((DefaultTableModel) tabelaSimbolos.getModel()).addRow(new Object[]{
-            entry.getValue(),
-            entry.getKey()
-        });
-            
-        }
-//        ((DefaultTableModel) tabelaSimbolos.getModel()).addRow(new Object[]{
-//            "1",
-//            "valor"
-//        });
         
+        for (int i = 1; i <= ordem; i++) {
+            ((DefaultTableModel) tabelaSimbolos.getModel()).addRow(new Object[]{
+            i,
+            tabela.get(i)
+        });
+        }
     }
+    
     
     public void atualizaTabelaErros(){
         //Atualiza tabela
@@ -277,6 +284,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
 
         tf_NomeArquivo.setEnabled(false);
 
+        bt_Limpar.setBackground(new java.awt.Color(255, 255, 255));
         bt_Limpar.setText("Limpar");
         bt_Limpar.setFocusPainted(false);
         bt_Limpar.setFocusable(false);
@@ -286,6 +294,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
             }
         });
 
+        bt_Compilar.setBackground(new java.awt.Color(255, 255, 255));
         bt_Compilar.setText("Compilar");
         bt_Compilar.setFocusPainted(false);
         bt_Compilar.setFocusable(false);
@@ -326,6 +335,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Lista de Tokens");
 
+        bt_Selecionar.setBackground(new java.awt.Color(255, 255, 255));
         bt_Selecionar.setText("Selecionar");
         bt_Selecionar.setFocusPainted(false);
         bt_Selecionar.setFocusable(false);
@@ -439,7 +449,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
         });
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\mauricio.rodrigues\\OneDrive - NDD.Tech\\Documentos\\GitHub\\Compilador\\images\\icons8_Exit_25px.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\mauricio.rodrigues\\Downloads\\CompiladorV1\\images\\icons8_Exit_25px.png")); // NOI18N
         jLabel1.setText("Logout");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class TabelaSimbolos {
 
-    public static HashMap<String, Integer> tabela = new HashMap<>();;
+    public static HashMap<Integer, String> tabela = new HashMap<>();
 
     public TabelaSimbolos() {
         

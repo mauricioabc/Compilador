@@ -14,8 +14,11 @@ public class Arquivo {
         BufferedReader leitor = new BufferedReader(new FileReader(arquivo));
         ArrayList<String[]> linhas = new ArrayList();
         String linhaAtual = leitor.readLine();
+        int numeroLinha = 1;
         while (linhaAtual != null) {
-            lexica.analisador(linhaAtual);
+            System.out.println("Linha a ser analisada:" + linhaAtual);
+            lexica.analisador(linhaAtual, numeroLinha);
+            numeroLinha++;
             linhaAtual = leitor.readLine();
         }
     }

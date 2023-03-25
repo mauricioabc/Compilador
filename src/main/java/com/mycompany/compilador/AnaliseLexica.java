@@ -11,25 +11,50 @@ public class AnaliseLexica {
     public static List<Simbolo> simbolos = new ArrayList<>();
 
     public AnaliseLexica() {
+        palavrasReservadas.add("int");
+        palavrasReservadas.add("float");
+        palavrasReservadas.add("char");
+        palavrasReservadas.add("boolean");
+        palavrasReservadas.add("void");
         palavrasReservadas.add("if");
+        palavrasReservadas.add("else");
+        palavrasReservadas.add("for");
+        palavrasReservadas.add("while");
+        palavrasReservadas.add("scanf");
+        palavrasReservadas.add("println");
+        palavrasReservadas.add("main");
+        palavrasReservadas.add("return");
     }
     
 
-    public void analisador(String linha){
+    public void analisador(String linha, int numeroLinha){
         
         int tamanhoLinha = linha.length();
         int posicaoAtual = 0;
         int estado = 0;
+        int ordem, autoIncrementNumber;
         char c;
         String lexema = "";
         String token;
-        boolean volta = false;
-        Simbolo sim;
+        String mensagemErro;
+        boolean volta = false; 
+        boolean status = false;
+        Simbolo simbolo;
         
         while(posicaoAtual != tamanhoLinha){
+            System.out.println("----------------------------------");
+            System.out.println("Lendo posicao: " + posicaoAtual);
+            System.out.println("Tamanho linha: " + tamanhoLinha);
             c = linha.charAt(posicaoAtual);
+            
+            System.out.println("Caractere lido: " + c);
+            System.out.println("Lexama Inicio: " + lexema);
+            System.out.println("Estado Inicio: " + estado);
+            System.out.println("Volta Inicio: " + volta);
+            
             switch (estado) {
                 case 0:
+                    volta = false;
                     if(Character.isLetter(c) || c == '_'){
                        estado = 1;
                        lexema += c; 
@@ -95,6 +120,12 @@ public class AnaliseLexica {
                     }else if(c == '}'){
                        estado = 41;
                        lexema = "}";
+                    }else if(c == ' '){
+                       estado = 0;
+                       lexema = "";
+                    }else if(c == '\t'){
+                       estado = 0;
+                       lexema = "";
                     }else{
                         estado = 42;
                         lexema += c;
@@ -113,20 +144,27 @@ public class AnaliseLexica {
                     }
                     break;
                 case 2:
-                    for (String palavraReservada : palavrasReservadas) {
-                        if (palavraReservada.equals(lexema)) {
-                            sim = new Simbolo(lexema, lexema);
-                            simbolos.add(sim);
-                        }
-                        else {
-                            int a = TabelaSimbolos.AutoIncrement.getNext();
-                            sim = new Simbolo(lexema, "id", Integer.toString(a));
-                            TabelaSimbolos.tabela.put(lexema, a);
-                            simbolos.add(sim);
-                            
+                    if (palavrasReservadas.contains(lexema)) {
+                        simbolo = new Simbolo(lexema, lexema);
+                        simbolos.add(simbolo);
+                    }
+                    else {
+                        if (TabelaSimbolos.tabela.containsValue(lexema)) {
+                            ordem = TabelaSimbolos.tabela.size();
+                            for (int i = 1; i <= ordem; i++) {
+                                if (lexema.equals(TabelaSimbolos.tabela.get(i))) {
+                                    simbolo = new Simbolo(lexema, "id", Integer.toString(i));
+                                    simbolos.add(simbolo);
+                                }
+                            }
+                        } else {
+                            autoIncrementNumber = TabelaSimbolos.AutoIncrement.getNext();
+                            simbolo = new Simbolo(lexema, "id", Integer.toString(autoIncrementNumber));
+                            TabelaSimbolos.tabela.put(autoIncrementNumber, lexema);
+                            simbolos.add(simbolo);
                         }
                     }
-                    volta = false;
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -146,9 +184,9 @@ public class AnaliseLexica {
                     }
                     break;
                 case 4:
-                    sim = new Simbolo(lexema, "NUM_INT", lexema);
-                    simbolos.add(sim);
-                    volta = false;
+                    simbolo = new Simbolo(lexema, "NUM_INT", lexema);
+                    simbolos.add(simbolo);
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -174,8 +212,8 @@ public class AnaliseLexica {
                     }
                     break;
                 case 7:
-                    sim = new Simbolo(lexema, "NUM_DEC", lexema);
-                    simbolos.add(sim);
+                    simbolo = new Simbolo(lexema, "NUM_DEC", lexema);
+                    simbolos.add(simbolo);
                     volta = false;
                     estado = 0;
                     lexema = "";
@@ -183,7 +221,7 @@ public class AnaliseLexica {
                 case 8:
                     if(c == '"'){
                         estado = 9;
-                    }else if(c == '\n'){
+                    }else if(posicaoAtual + 1 == tamanhoLinha){
                         estado = 42;
                         lexema += c; 
                     }else{
@@ -192,9 +230,9 @@ public class AnaliseLexica {
                     }
                     break;
                 case 9:
-                    sim = new Simbolo(lexema, "TEXTO", lexema);
-                    simbolos.add(sim);
-                    volta = false;
+                    simbolo = new Simbolo(lexema, "TEXTO", lexema);
+                    simbolos.add(simbolo);
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -202,9 +240,11 @@ public class AnaliseLexica {
                     if(c == '/'){
                         estado = 11;
                         lexema += c;
-                    }else {
+                    }else if (c == 't'){
+                        estado = 0;
+                        lexema = "";
+                    } else {
                         estado = 13;
-                        volta = true; 
                     }
                     break;
                 case 11:
@@ -217,22 +257,22 @@ public class AnaliseLexica {
                     }
                     break;
                 case 12:
-                    sim = new Simbolo(lexema, "COMENT", lexema);
-                    simbolos.add(sim);
+                    simbolo = new Simbolo(lexema, "COMENT", lexema);
+                    simbolos.add(simbolo);
                     volta = false;
                     estado = 0;
                     lexema = "";
                     break;
                 case 13:
-                    sim = new Simbolo(lexema, lexema);
-                    simbolos.add(sim);
-                    volta = false;
+                    simbolo = new Simbolo(lexema, lexema);
+                    simbolos.add(simbolo);
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
                 case 14,15,16,17:
-                    sim = new Simbolo(lexema, lexema);
-                    simbolos.add(sim);
+                    simbolo = new Simbolo(lexema, lexema);
+                    simbolos.add(simbolo);
                     volta = false;
                     estado = 0;
                     lexema = "";
@@ -247,8 +287,8 @@ public class AnaliseLexica {
                     }
                     break;
                 case 19, 20:
-                    sim = new Simbolo(lexema, lexema);
-                    simbolos.add(sim);
+                    simbolo = new Simbolo(lexema, lexema);
+                    simbolos.add(simbolo);
                     volta = false;
                     estado = 0;
                     lexema = "";
@@ -263,8 +303,8 @@ public class AnaliseLexica {
                     }
                     break;
                 case 22, 23:
-                    sim = new Simbolo(lexema, lexema);
-                    simbolos.add(sim);
+                    simbolo = new Simbolo(lexema, lexema);
+                    simbolos.add(simbolo);
                     volta = false;
                     estado = 0;
                     lexema = "";
@@ -279,8 +319,8 @@ public class AnaliseLexica {
                     }
                     break;
                 case 25, 26:
-                    sim = new Simbolo(lexema, lexema);
-                    simbolos.add(sim);
+                    simbolo = new Simbolo(lexema, lexema);
+                    simbolos.add(simbolo);
                     volta = false;
                     estado = 0;
                     lexema = "";
@@ -295,8 +335,8 @@ public class AnaliseLexica {
                     }
                     break;
                 case 28, 29:
-                    sim = new Simbolo(lexema, lexema);
-                    simbolos.add(sim);
+                    simbolo = new Simbolo(lexema, lexema);
+                    simbolos.add(simbolo);
                     volta = false;
                     estado = 0;
                     lexema = "";
@@ -311,8 +351,8 @@ public class AnaliseLexica {
                     }
                     break;
                 case 31:
-                    sim = new Simbolo(lexema, lexema);
-                    simbolos.add(sim);
+                    simbolo = new Simbolo(lexema, lexema);
+                    simbolos.add(simbolo);
                     volta = false;
                     estado = 0;
                     lexema = "";
@@ -327,14 +367,18 @@ public class AnaliseLexica {
                     }
                     break;
                 case 33, 34, 35, 36, 37, 38, 39, 40, 41:
-                    sim = new Simbolo(lexema, lexema);
-                    simbolos.add(sim);
-                    volta = false;
+                    simbolo = new Simbolo(lexema, lexema);
+                    simbolos.add(simbolo);
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
                 case 42:
-                    erros.add(lexema);
+                    mensagemErro = "Linha: " + numeroLinha + " - Entrada inválida: '" + lexema + "'.";
+                    erros.add(mensagemErro);
+                    estado = 0;
+                    lexema = "";
+                    volta = true;
                     break;
                 default:
                     System.out.println("Default " +lexema);;
@@ -342,6 +386,20 @@ public class AnaliseLexica {
             
             if(volta == false){
                 posicaoAtual++;
+            }
+            
+            System.out.println("Lexama Fim: " + lexema);
+            System.out.println("Estado Fim: " + estado);
+            System.out.println("Volta Fim: " + volta);
+            
+            if (posicaoAtual == tamanhoLinha) {
+                posicaoAtual = tamanhoLinha;
+                System.out.println("Posicao atual igual ao tamanho.");
+                if (status == false) {
+                    System.out.println("Retorna 1 para garantir a verificacao do ultimo caractere.");
+                    posicaoAtual--;
+                    status = true;
+                } 
             }
             
         }
