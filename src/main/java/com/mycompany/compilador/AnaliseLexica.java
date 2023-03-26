@@ -35,7 +35,6 @@ public class AnaliseLexica {
         int ordem, autoIncrementNumber;
         char c;
         String lexema = "";
-        String token;
         String mensagemErro;
         boolean volta = false; 
         boolean status = false;
@@ -59,7 +58,7 @@ public class AnaliseLexica {
                        estado = 1;
                        lexema += c; 
                     }else if(Character.isDigit(c)){
-                        estado = 3;
+                       estado = 3;
                        lexema += c;
                     }else if(c == '"'){
                        estado = 8;
@@ -68,16 +67,16 @@ public class AnaliseLexica {
                        lexema += c;
                     }else if(c == '+'){
                        estado = 14;
-                       token = "+";
+                       lexema = "+";
                     }else if(c == '-'){
                        estado = 15;
-                       token = "-";
+                       lexema = "-";
                     }else if(c == '*'){
                        estado = 16;
-                       token = "*";
+                       lexema = "*";
                     }else if(c == '%'){
                        estado = 17;
-                       token = "%";
+                       lexema = "%";
                     }else if(c == '='){
                        estado = 18;
                        lexema += c;
@@ -214,7 +213,7 @@ public class AnaliseLexica {
                 case 7:
                     simbolo = new Simbolo(lexema, "NUM_DEC", lexema);
                     simbolos.add(simbolo);
-                    volta = false;
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -248,7 +247,7 @@ public class AnaliseLexica {
                     }
                     break;
                 case 11:
-                    if(c == '\n'){
+                    if(posicaoAtual + 1 == tamanhoLinha){
                         estado = 12;
                         lexema += c;
                     }else{
@@ -259,7 +258,7 @@ public class AnaliseLexica {
                 case 12:
                     simbolo = new Simbolo(lexema, "COMENT", lexema);
                     simbolos.add(simbolo);
-                    volta = false;
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -273,7 +272,7 @@ public class AnaliseLexica {
                 case 14,15,16,17:
                     simbolo = new Simbolo(lexema, lexema);
                     simbolos.add(simbolo);
-                    volta = false;
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -289,7 +288,7 @@ public class AnaliseLexica {
                 case 19, 20:
                     simbolo = new Simbolo(lexema, lexema);
                     simbolos.add(simbolo);
-                    volta = false;
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -305,7 +304,7 @@ public class AnaliseLexica {
                 case 22, 23:
                     simbolo = new Simbolo(lexema, lexema);
                     simbolos.add(simbolo);
-                    volta = false;
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -321,7 +320,7 @@ public class AnaliseLexica {
                 case 25, 26:
                     simbolo = new Simbolo(lexema, lexema);
                     simbolos.add(simbolo);
-                    volta = false;
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -337,7 +336,7 @@ public class AnaliseLexica {
                 case 28, 29:
                     simbolo = new Simbolo(lexema, lexema);
                     simbolos.add(simbolo);
-                    volta = false;
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;
@@ -353,7 +352,7 @@ public class AnaliseLexica {
                 case 31:
                     simbolo = new Simbolo(lexema, lexema);
                     simbolos.add(simbolo);
-                    volta = false;
+                    volta = true;
                     estado = 0;
                     lexema = "";
                     break;   
