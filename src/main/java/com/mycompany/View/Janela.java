@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
  */
 public class Janela extends javax.swing.JFrame {
 
+    static Janela j;
     static JanelaCompilador p1;
     
     public Janela() {
@@ -77,7 +78,7 @@ public class Janela extends javax.swing.JFrame {
         
         /* Create and display the form */
         
-        Janela j = new Janela();
+        j = new Janela();
         j.setLocationRelativeTo(null);
         j.setVisible(true);
         

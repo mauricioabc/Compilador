@@ -449,7 +449,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
         });
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\mauricio.rodrigues\\Downloads\\CompiladorV1\\images\\icons8_Exit_25px.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(".\\images\\iconExit.png"));
         jLabel1.setText("Logout");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -521,12 +521,11 @@ public class JanelaCompilador extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel1MousePressed
 
     private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
-        // TODO add your handling code here:
-
         //source to drag
         int x = evt.getXOnScreen();
         int y = evt.getYOnScreen();
-        this.setLocation(x-xx,y-xy);
+        //tQuando altera o JPainel, ele altera a posição da Janela
+        Janela.j.setLocation(x-xx,y-xy);
     }//GEN-LAST:event_jPanel2MouseDragged
 
     private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
