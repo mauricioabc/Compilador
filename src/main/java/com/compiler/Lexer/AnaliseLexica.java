@@ -1,8 +1,8 @@
-package com.mycompany.compilador;
+package com.compiler.Lexer;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.mycompany.compilador.TabelaSimbolos;
+import com.compiler.Lexer.TabelaSimbolos;
 
 public class AnaliseLexica {
     

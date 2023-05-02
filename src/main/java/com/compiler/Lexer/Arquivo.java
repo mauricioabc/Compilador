@@ -1,5 +1,6 @@
-package com.mycompany.compilador;
+package com.compiler.Lexer;
 
+import com.compiler.Parser.gramaticaLRParser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

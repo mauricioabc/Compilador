@@ -1,14 +1,8 @@
 package com.mycompany;
 
-import com.mycompany.compilador.AnaliseLexica;
-import com.mycompany.compilador.Simbolo;
-import javax.swing.table.DefaultTableModel;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import com.compiler.Lexer.AnaliseLexica;
+import com.compiler.Lexer.Simbolo;
+import org.junit.jupiter.api.Test;
 
 public class compiladorTestes {
     

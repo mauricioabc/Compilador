@@ -1,4 +1,4 @@
-package com.mycompany.View;
+package com.compiler.View;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -30,10 +30,6 @@ public class Janela extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
-        setLocationByPlatform(true);
-        setUndecorated(true);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

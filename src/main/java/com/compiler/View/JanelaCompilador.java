@@ -1,9 +1,9 @@
-package com.mycompany.View;
+package com.compiler.View;
 
-import com.mycompany.compilador.AnaliseLexica;
-import com.mycompany.compilador.Arquivo;
-import com.mycompany.compilador.Simbolo;
-import com.mycompany.compilador.TabelaSimbolos;
+import com.compiler.Lexer.AnaliseLexica;
+import com.compiler.Lexer.Arquivo;
+import com.compiler.Lexer.Simbolo;
+import com.compiler.Lexer.TabelaSimbolos;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.File;
@@ -60,7 +60,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
                 this.arquivo = new Arquivo();
                 arquivo.lerArquivo(file);
             } catch (IOException ex) {
-                Logger.getLogger(com.mycompany.compilador.Janela.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Janela.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

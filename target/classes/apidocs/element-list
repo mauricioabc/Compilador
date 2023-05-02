@@ -1,2 +1,3 @@
-com.mycompany.compilador
-com.mycompany.View
+com.compiler.Lexer
+com.compiler.Parser
+com.compiler.View
