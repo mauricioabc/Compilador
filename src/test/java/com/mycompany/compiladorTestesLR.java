@@ -4,8 +4,7 @@
  */
 package com.mycompany;
 
-import com.compiler.Parser.gramaticaLRLexer;
-import com.compiler.Parser.gramaticaLRParser;
+import com.compiler.Parser.*;
 import org.antlr.runtime.CharStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -58,13 +57,13 @@ public class compiladorTestesLR {
         //CharStream input = CharStreams.fromString("main(){ int x, y; scanf(x); y = 3 * x; println(y); }");
 
         // Cria um CommonTokenStream a partir do lexer
-        org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
         
         // Cria um parser a partir do CommonTokenStream
         gramaticaLRParser parser = new gramaticaLRParser(tokens);
         
         // Cria a árvore de análise sintática a partir do parser
-        org.antlr.v4.runtime.tree.ParseTree tree = parser.programa();
+        ParseTree tree = parser.programa();
         
         // Imprime a árvore de análise sintática
         System.out.println(tree.toStringTree(parser));

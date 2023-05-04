@@ -2,29 +2,19 @@ package com.compiler.View;
 
 import com.compiler.Lexer.AnaliseLexica;
 import com.compiler.Lexer.Arquivo;
+import static com.compiler.Lexer.Arquivo.generatedTree;
 import com.compiler.Lexer.Simbolo;
 import com.compiler.Lexer.TabelaSimbolos;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
-import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.TabableView;
 
 /**
  *
@@ -48,7 +38,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Texto", "txt");
         fc.setFileFilter(filter);
         System.out.println("Diretório atual: " + System.getProperty("user.dir"));
-        File initialDir = new File("./exemplos");
+        File initialDir = new File("./");
         fc.setCurrentDirectory(initialDir);
         fc.setDialogTitle("Abrir arquivo de texto");
         int returnVal = fc.showOpenDialog(this);
@@ -67,6 +57,7 @@ public class JanelaCompilador extends javax.swing.JPanel {
     
     public void limparArquivo(){
         tf_NomeArquivo.setText("");
+        ta_Arvore.removeAll();
         ((DefaultTableModel) tabelaListaTokens.getModel()).setRowCount(0);
         ((DefaultTableModel) tabelaSimbolos.getModel()).setRowCount(0);
         ((DefaultTableModel) tabelaErros.getModel()).setRowCount(0);
@@ -76,6 +67,15 @@ public class JanelaCompilador extends javax.swing.JPanel {
         atualizaTabelaTokens();
         atualizaTabelaSimbolos();
         atualizaTabelaErros();
+        atualizaArvore();
+    }
+    
+    public void atualizaArvore(){
+        System.out.println(generatedTree);
+        //Atualiza tabela
+        ta_Arvore.removeAll();
+        ta_Arvore.append("Árvore de derivação: \n");
+        ta_Arvore.append(generatedTree);
     }
     
     public void atualizaTabelaTokens(){
@@ -88,11 +88,6 @@ public class JanelaCompilador extends javax.swing.JPanel {
             s.getToken()+", "+s.getAtributo()
         }); 
         }
-//        ((DefaultTableModel) tabelaListaTokens.getModel()).addRow(new Object[]{
-//            "valor",
-//            "Id, 1"
-//        });
-        
     }
     
     public void atualizaTabelaSimbolos(){
@@ -119,11 +114,6 @@ public class JanelaCompilador extends javax.swing.JPanel {
             s
         }); 
         }
-        
-//        ((DefaultTableModel) tabelaErros.getModel()).addRow(new Object[]{
-//            "Linha 3: Erro aspas não fechadas."
-//        });
-        
     }
     
     @SuppressWarnings("unchecked")
@@ -153,6 +143,8 @@ public class JanelaCompilador extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         tabelaErros = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ta_Arvore = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -373,37 +365,45 @@ public class JanelaCompilador extends javax.swing.JPanel {
         });
         jScrollPane5.setViewportView(tabelaErros);
 
+        ta_Arvore.setEditable(false);
+        ta_Arvore.setColumns(20);
+        ta_Arvore.setRows(5);
+        jScrollPane1.setViewportView(ta_Arvore);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                .addComponent(bt_Limpar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bt_Selecionar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(bt_Compilar))
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel18)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                             .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tf_NomeArquivo))
-                            .addComponent(jLabel19))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE))
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                        .addComponent(bt_Limpar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bt_Selecionar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(bt_Compilar))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tf_NomeArquivo))
+                                    .addComponent(jLabel19))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -431,9 +431,11 @@ public class JanelaCompilador extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7))
         );
 
         jPanel2.setBackground(new java.awt.Color(71, 120, 197));
@@ -584,10 +586,12 @@ public class JanelaCompilador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPanel side_pane;
+    private javax.swing.JTextArea ta_Arvore;
     private javax.swing.JTable tabelaErros;
     private javax.swing.JTable tabelaListaTokens;
     private javax.swing.JTable tabelaSimbolos;

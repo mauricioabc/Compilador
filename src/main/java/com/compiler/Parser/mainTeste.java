@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  *
@@ -38,20 +40,20 @@ public class mainTeste {
         fileReader.close();
 
         // Cria um CharStream a partir da string de código
-        org.antlr.v4.runtime.CharStream input = CharStreams.fromString(codigo);
+        CharStream input = CharStreams.fromString(codigo);
         // O restante do código é igual ao original
         // Cria um lexer a partir do CharStream
         gramaticaLRLexer lexer = new gramaticaLRLexer(input);
         //CharStream input = CharStreams.fromString("main(){ int x, y; scanf(x); y = 3 * x; println(y); }");
 
         // Cria um CommonTokenStream a partir do lexer
-        org.antlr.v4.runtime.CommonTokenStream tokens = new org.antlr.v4.runtime.CommonTokenStream(lexer);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
         
         // Cria um parser a partir do CommonTokenStream
         gramaticaLRParser parser = new gramaticaLRParser(tokens);
         
         // Cria a árvore de análise sintática a partir do parser
-        org.antlr.v4.runtime.tree.ParseTree tree = parser.programa();
+        ParseTree tree = parser.programa();
         
         // Imprime a árvore de análise sintática
         System.out.println(tree.toStringTree(parser));

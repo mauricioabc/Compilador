@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.compiler.Lexer"},{"l":"com.compiler.Parser"},{"l":"com.compiler.View"}];updateSearchResults();
