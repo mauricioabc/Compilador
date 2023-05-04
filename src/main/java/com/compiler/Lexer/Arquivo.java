@@ -1,22 +1,23 @@
 package com.compiler.Lexer;
 
+import com.compiler.Parser.ErrorListener;
 import com.compiler.Parser.gramaticaLRLexer;
 import com.compiler.Parser.gramaticaLRParser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 public class Arquivo {
 
     AnaliseLexica lexica = new AnaliseLexica();
     public static String generatedTree;
+    public static List<String> errors;
     
     public void lerArquivo(File arquivo) throws IOException {
         BufferedReader leitor = new BufferedReader(new FileReader(arquivo));
@@ -46,9 +47,15 @@ public class Arquivo {
         // Cria um parser a partir do CommonTokenStream
         gramaticaLRParser parser = new gramaticaLRParser(tokens);
         
+        ErrorListener errorListener = new ErrorListener();
+        parser.removeErrorListeners(); // Remove os listeners padrão do parser
+        parser.addErrorListener(errorListener); // Adiciona o MeuErrorListener ao parser
+
         // Cria a árvore de análise sintática a partir do parser
         ParseTree tree = parser.programa();
         
+        errors = errorListener.getErrors(); // Recupera as mensagens de erro geradas
+
         // Imprime a árvore de análise sintática
         generatedTree = tree.toStringTree(parser);
         

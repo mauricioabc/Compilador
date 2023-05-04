@@ -2,6 +2,7 @@ package com.compiler.View;
 
 import com.compiler.Lexer.AnaliseLexica;
 import com.compiler.Lexer.Arquivo;
+import static com.compiler.Lexer.Arquivo.errors;
 import static com.compiler.Lexer.Arquivo.generatedTree;
 import com.compiler.Lexer.Simbolo;
 import com.compiler.Lexer.TabelaSimbolos;
@@ -104,14 +105,19 @@ public class JanelaCompilador extends javax.swing.JPanel {
         }
     }
     
-    
     public void atualizaTabelaErros(){
         //Atualiza tabela
         ((DefaultTableModel) tabelaErros.getModel()).setRowCount(0);
             
         for (String s : AnaliseLexica.erros) {
            ((DefaultTableModel) tabelaErros.getModel()).addRow(new Object[]{
-            s
+            "Lexer: " + s
+        }); 
+        }
+        
+        for (String s : errors) {
+           ((DefaultTableModel) tabelaErros.getModel()).addRow(new Object[]{
+            "Parser: " + s
         }); 
         }
     }
