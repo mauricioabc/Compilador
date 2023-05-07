@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
 package com.mycompany;
 
 import com.compiler.Parser.*;
-import org.antlr.runtime.CharStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -70,5 +65,145 @@ public class compiladorTestesLR {
 
     }
 
+    //Testes Aula 13 - Lista de Exercícios
+    @Test
+    public void testaExercicio_1(){
+        org.antlr.v4.runtime.CharStream input = CharStreams.fromString("main(){ int x, y; scanf(x); y = 3 * x; println(y); }");
+        
+        // Cria um lexer a partir do CharStream
+        gramaticaLRLexer lexer = new gramaticaLRLexer(input);
+        
+        // Cria um CommonTokenStream a partir do lexer
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        
+        // Cria um parser a partir do CommonTokenStream
+        gramaticaLRParser parser = new gramaticaLRParser(tokens);
+        
+        // Cria a árvore de análise sintática a partir do parser
+        ParseTree tree = parser.programa();
+        
+        // Imprime a árvore de análise sintática
+        System.out.println(tree.toStringTree(parser));
+    }
+    
+    @Test
+    public void testaExercicio_2(){
+        org.antlr.v4.runtime.CharStream input = CharStreams.fromString("main(){ int x; char y; scanf(x); y = 2 * x; println(y); }");
+        
+        // Cria um lexer a partir do CharStream
+        gramaticaLRLexer lexer = new gramaticaLRLexer(input);
+        
+        // Cria um CommonTokenStream a partir do lexer
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        
+        // Cria um parser a partir do CommonTokenStream
+        gramaticaLRParser parser = new gramaticaLRParser(tokens);
+        
+        // Cria a árvore de análise sintática a partir do parser
+        ParseTree tree = parser.programa();
+        
+        // Imprime a árvore de análise sintática
+        System.out.println(tree.toStringTree(parser));
+    }
+    
+    @Test
+    public void testaExercicio_3(){
+        org.antlr.v4.runtime.CharStream input = CharStreams.fromString("int soma(int a, int b){ return a + b; } main(){ int x, y, z; x = 2; scanf(y); z = func soma(x,y); println(z); }");
+        
+        // Cria um lexer a partir do CharStream
+        gramaticaLRLexer lexer = new gramaticaLRLexer(input);
+        
+        // Cria um CommonTokenStream a partir do lexer
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        
+        // Cria um parser a partir do CommonTokenStream
+        gramaticaLRParser parser = new gramaticaLRParser(tokens);
+        
+        // Cria a árvore de análise sintática a partir do parser
+        ParseTree tree = parser.programa();
+        
+        // Imprime a árvore de análise sintática
+        System.out.println(tree.toStringTree(parser));
+    }
+    
+    @Test
+    public void testaExercicio_4(){
+        org.antlr.v4.runtime.CharStream input = CharStreams.fromString("main(){ int x, y; scanf(x); y = 2 * x; println(y); }");
+        
+        // Cria um lexer a partir do CharStream
+        gramaticaLRLexer lexer = new gramaticaLRLexer(input);
+        
+        // Cria um CommonTokenStream a partir do lexer
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        
+        // Cria um parser a partir do CommonTokenStream
+        gramaticaLRParser parser = new gramaticaLRParser(tokens);
+        
+        // Cria a árvore de análise sintática a partir do parser
+        ParseTree tree = parser.programa();
+        
+        // Imprime a árvore de análise sintática
+        System.out.println(tree.toStringTree(parser));
+    }
+    
+    @Test
+    public void testaExercicio_5(){
+        org.antlr.v4.runtime.CharStream input = CharStreams.fromString("main(){ int x; char y; scanf(x); y = 2 * x; println(y); }");
+        
+        // Cria um lexer a partir do CharStream
+        gramaticaLRLexer lexer = new gramaticaLRLexer(input);
+        
+        // Cria um CommonTokenStream a partir do lexer
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        
+        // Cria um parser a partir do CommonTokenStream
+        gramaticaLRParser parser = new gramaticaLRParser(tokens);
+        
+        // Cria a árvore de análise sintática a partir do parser
+        ParseTree tree = parser.programa();
+        
+        // Imprime a árvore de análise sintática
+        System.out.println(tree.toStringTree(parser));
+    }
+    
+    @Test
+    public void testaExercicio_6(){
+        org.antlr.v4.runtime.CharStream input = CharStreams.fromString("int soma(int a, int b){ return a + b; } main(){ int x, y, z; x = 2; scanf(y); z = func soma(x,y); println(z); }");
+        
+        // Cria um lexer a partir do CharStream
+        gramaticaLRLexer lexer = new gramaticaLRLexer(input);
+        
+        // Cria um CommonTokenStream a partir do lexer
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        
+        // Cria um parser a partir do CommonTokenStream
+        gramaticaLRParser parser = new gramaticaLRParser(tokens);
+        
+        // Cria a árvore de análise sintática a partir do parser
+        ParseTree tree = parser.programa();
+        
+        // Imprime a árvore de análise sintática
+        System.out.println(tree.toStringTree(parser));
+    }
+    
+    @Test
+    public void testaExercicio_7(){
+        org.antlr.v4.runtime.CharStream input = CharStreams.fromString("int soma(int a, int b){ return a + b; } main(){ int x, y, z; x = \"Dois\"; scanf(y); z = func soma(x,y); println(z); }");
+        
+        // Cria um lexer a partir do CharStream
+        gramaticaLRLexer lexer = new gramaticaLRLexer(input);
+        
+        // Cria um CommonTokenStream a partir do lexer
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        
+        // Cria um parser a partir do CommonTokenStream
+        gramaticaLRParser parser = new gramaticaLRParser(tokens);
+        
+        // Cria a árvore de análise sintática a partir do parser
+        ParseTree tree = parser.programa();
+        
+        // Imprime a árvore de análise sintática
+        System.out.println(tree.toStringTree(parser));
+    }
     
 }

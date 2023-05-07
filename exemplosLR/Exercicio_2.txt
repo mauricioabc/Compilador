@@ -1,0 +1,7 @@
+main(){
+	int x;
+	char y;
+	scanf(x);
+	y = 2 * x;
+	println(y);
+}

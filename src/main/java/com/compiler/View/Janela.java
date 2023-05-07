@@ -1,9 +1,6 @@
 package com.compiler.View;
 
-import javax.swing.JFrame;
 import java.awt.BorderLayout;
-import java.awt.event.KeyEvent;
-import javax.swing.SwingUtilities;
 
 /**
  *

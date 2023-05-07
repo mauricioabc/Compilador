@@ -58,7 +58,10 @@ public class JanelaCompilador extends javax.swing.JPanel {
     
     public void limparArquivo(){
         tf_NomeArquivo.setText("");
-        ta_Arvore.removeAll();
+        ta_Arvore.setText("");
+        AnaliseLexica.palavrasReservadas.clear();
+        AnaliseLexica.simbolos.clear();
+        AnaliseLexica.erros.clear();
         ((DefaultTableModel) tabelaListaTokens.getModel()).setRowCount(0);
         ((DefaultTableModel) tabelaSimbolos.getModel()).setRowCount(0);
         ((DefaultTableModel) tabelaErros.getModel()).setRowCount(0);
