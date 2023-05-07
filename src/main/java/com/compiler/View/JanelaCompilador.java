@@ -57,21 +57,32 @@ public class JanelaCompilador extends javax.swing.JPanel {
     }
     
     public void limparArquivo(){
-        tf_NomeArquivo.setText("");
-        ta_Arvore.setText("");
-        AnaliseLexica.palavrasReservadas.clear();
-        AnaliseLexica.simbolos.clear();
-        AnaliseLexica.erros.clear();
-        ((DefaultTableModel) tabelaListaTokens.getModel()).setRowCount(0);
-        ((DefaultTableModel) tabelaSimbolos.getModel()).setRowCount(0);
-        ((DefaultTableModel) tabelaErros.getModel()).setRowCount(0);
+        if (AnaliseLexica.palavrasReservadas.isEmpty()) {
+            ReturnMessagePane.errorPainel("Erro", "Variáveis vazias.");
+        } else {
+            tf_NomeArquivo.setText("");
+            ta_Arvore.setText("");
+            AnaliseLexica.palavrasReservadas.clear();
+            AnaliseLexica.simbolos.clear();
+            AnaliseLexica.erros.clear();
+            TabelaSimbolos.tabela.clear();
+            TabelaSimbolos.count = 0;
+            generatedTree = "";
+            ((DefaultTableModel) tabelaListaTokens.getModel()).setRowCount(0);
+            ((DefaultTableModel) tabelaSimbolos.getModel()).setRowCount(0);
+            ((DefaultTableModel) tabelaErros.getModel()).setRowCount(0);
+        }
     }
     
     public void compilar(){
-        atualizaTabelaTokens();
-        atualizaTabelaSimbolos();
-        atualizaTabelaErros();
-        atualizaArvore();
+        if (tf_NomeArquivo.getText().isEmpty()) {
+            ReturnMessagePane.errorPainel("Erro", "Selecione um arquivo.");
+        } else {
+            atualizaTabelaTokens();
+            atualizaTabelaSimbolos();
+            atualizaTabelaErros();
+            atualizaArvore();
+        }
     }
     
     public void atualizaArvore(){
