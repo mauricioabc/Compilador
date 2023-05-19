@@ -1,0 +1,4 @@
+public static void main (String [] args){
+	println("Teste aspas");
+	println("Teste aspas");
+}
