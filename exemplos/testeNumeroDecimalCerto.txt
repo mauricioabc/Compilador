@@ -1,6 +1,0 @@
-public static void main (String [] args){
-	int a = 10; 
-	float b = 4.1;
-	float c = a / b;
-	println(c);
-}
