@@ -1,4 +1,4 @@
-package com.mycompany.compilador;
+package com.compiler.Lexer;
 
 public class Simbolo {
 
@@ -16,6 +16,19 @@ public class Simbolo {
         this.lexema = lexema;
         this.token = token;
     }
+
+    public String getLexema() {
+        return lexema;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public String getAtributo() {
+        return atributo;
+    }
+    
     
     
     
