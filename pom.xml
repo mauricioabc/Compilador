@@ -52,7 +52,7 @@
                      </descriptorRefs>
                      <archive>
                          <manifest>
-                             <mainClass>com.mycompany.View.Janela</mainClass>
+                             <mainClass>com.compiler.View.Janela</mainClass>
                          </manifest>
                      </archive>
                  </configuration>
