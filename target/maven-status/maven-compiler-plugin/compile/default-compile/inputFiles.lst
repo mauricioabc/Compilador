@@ -1,2 +1,13 @@
-C:\Users\alunolages\Documents\stephanie\CPL\Compilador\src\main\java\com\mycompany\compilador\Janela.java
-C:\Users\alunolages\Documents\stephanie\CPL\Compilador\src\main\java\com\mycompany\compilador\Arquivo.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Parser\gramaticaLRListener.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Parser\gramaticaLRParser.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Parser\mainTeste.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\View\JanelaHome.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Lexer\Arquivo.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Lexer\AnaliseLexica.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\View\Janela.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\View\JanelaCompilador.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Parser\ErrorListener.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Parser\gramaticaLRBaseListener.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Parser\gramaticaLRLexer.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Lexer\Simbolo.java
+C:\Users\stephanie.pm\Documents\Compilador\src\main\java\com\compiler\Lexer\TabelaSimbolos.java
